@@ -17,7 +17,13 @@ const userSchema = new mongoose.Schema({
   mobile: {
     type: Number,
   },
-
+  companyCode: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Company",
+  },
+  country: {
+    type: String,
+  },
   role: {
     type: String,
     default: "user",

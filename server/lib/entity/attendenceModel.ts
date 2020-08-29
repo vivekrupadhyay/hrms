@@ -1,12 +1,11 @@
 import * as mongoose from "mongoose";
 import Attendence from "../interfaces/attendence.interface";
+import { Schema } from "mongoose";
 
 const attendenceSchema = new mongoose.Schema({
   userId: {
-    type: String,
-  },
-  companyCode: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: "User",
   },
   currentAddress: {
     type: String,
