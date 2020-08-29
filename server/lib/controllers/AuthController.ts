@@ -88,8 +88,6 @@ class AuthController implements Controller {
     const secret = process.env.JWT_SECRET;
     const dataStoredInToken: DataStoredInToken = {
       _id: user.id,
-      // userName: user.fname + user.lname,
-      // userRole: user.role,
     };
     return {
       expiresIn,
