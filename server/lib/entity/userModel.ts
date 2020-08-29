@@ -18,9 +18,12 @@ const userSchema = new mongoose.Schema({
     type: Number,
   },
   companyCode: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Company",
+    type: String,
   },
+  // companyCode: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "Company",
+  // },
   country: {
     type: String,
   },

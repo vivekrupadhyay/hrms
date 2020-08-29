@@ -7,7 +7,7 @@ import { checkJwt } from "../middlewares/checkJwt";
 import { checkRole } from "../middlewares/checkRole";
 
 class UserController implements Controller {
-  public path = "/users";
+  public path = "/api/users";
   public router = express.Router();
   private users = userModel;
   constructor() {
@@ -53,20 +53,19 @@ class UserController implements Controller {
   };
   private createUser = async (
     request: express.Request,
-    response: express.Response
+    response: express.Response,
+    next: express.NextFunction
   ) => {
     const userData: User = request.body;
-    const hashedPassword = await bcrypt.hash(userData.password, 10);
-
-    const isExist = this.users.findOne({
-      email: request.body.email,
-    });
-    if (isExist) {
-      response
-        .status(400)
-        .send({ message: "Failed! Email is already in use!" });
-      return;
+    if (await this.users.findOne({ email: userData.email })) {
+      next(
+        response.send({
+          code: 409,
+          msg: "Email already exists.",
+        })
+      );
     } else {
+      const hashedPassword = await bcrypt.hash(userData.password, 10);
       const createUser = new this.users({
         ...userData,
         password: hashedPassword,
