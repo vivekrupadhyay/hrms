@@ -1,0 +1,29 @@
+<div class="clsDashboard">
+  <h3>Dashboard</h3>
+  <button class="back" (click)="navigateBack()">
+    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+  </button>
+  <!-- <div class="nav-container">
+    <button mat-raised-button color="primary" (click)="navigateBack()">
+      <mat-icon mat-list-icon>arrow_back</mat-icon>Close Details
+    </button>
+  </div> -->
+  <mat-accordion multi>
+    <mat-expansion-panel
+      *ngFor="let componentHostConfig of detailsComponentHostConfig"
+      (opened)="onOpened(componentHostConfig.instanceKey)"
+      (destroyed)="onDestroyed(componentHostConfig.instanceKey)"
+      #panel
+    >
+      <mat-expansion-panel-header>
+        <div class="panelTitle">
+          {{ componentHostConfig.title }}
+        </div>
+      </mat-expansion-panel-header>
+      <div
+        appComponentHost
+        [instanceKey]="componentHostConfig.instanceKey"
+      ></div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

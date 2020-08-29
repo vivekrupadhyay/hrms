@@ -1,0 +1,213 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      {{ title }}
+    </mat-card-title>
+  </mat-card-header>
+  <form
+    [formGroup]="userForm"
+    (ngSubmit)="saveUser(userForm.value)"
+    matSortStart="desc"
+    (matSortChange)="customSort($event)"
+  >
+    <mat-card-content>
+      <div class="container clsMain">
+        <div class="row">
+          <mat-form-field class="col-md-6">
+            <input
+              matInput
+              type="text"
+              placeholder="First Name"
+              formControlName="firstName"
+            />
+            <mat-error *ngIf="hasError('firstName', 'required')">
+              First name is required.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-md-6">
+            <input
+              matInput
+              type="text"
+              placeholder="Last Name"
+              formControlName="lastName"
+            />
+            <mat-error *ngIf="hasError('lastName', 'required')">
+              Last name is required.</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field class="col-md-6">
+            <input
+              matInput
+              type="text"
+              placeholder="Email"
+              formControlName="email"
+            />
+            <mat-error *ngIf="hasError('email', 'required')">
+              Email-Id is required.</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field class="col-md-6">
+            <input
+              matInput
+              type="number"
+              placeholder="Mobile"
+              formControlName="mobile"
+            />
+            <mat-error *ngIf="hasError('mobile', 'required')">
+              Mobile is required.</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <!-- <div class="row">
+          <mat-form-field class="col-md-6">
+            <input
+              matInput
+              type="password"
+              placeholder="Password"
+              formControlName="password"
+            />
+            <mat-error *ngIf="hasError('password', 'required')">
+              Password is required.</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field class="col-md-6">
+            <input
+              matInput
+              type="password"
+              placeholder="Confirm Password"
+              formControlName="confirmpassword"
+            />
+            <mat-error *ngIf="hasError('confirmpassword', 'required')">
+              Confirm Password is required.</mat-error
+            >
+            <mat-error
+              *ngIf="
+                userForm.controls['confirmPassword'].pristine ||
+                userForm.controls['confirmPassword'].errors?.MatchPassword
+              "
+              >Password does not match</mat-error
+            >
+          </mat-form-field>
+        </div> -->
+        <div class="row">
+          <div class="col-md-6">
+            <mat-radio-group aria-label="Select an option">
+              <mat-radio-button value="1">Male</mat-radio-button>
+              <mat-radio-button value="2">Female</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <mat-card-actions>
+          <button
+            mat-raised-button
+            color="primary"
+            type="button"
+            [disabled]="!userForm.valid"
+          >
+            SAVE
+          </button>
+          <button
+            type="reset"
+            mat-raised-button
+            color="accent"
+            matTooltip="Click Reset Button"
+            (click)="resetForm()"
+          >
+            Reset
+          </button>
+        </mat-card-actions>
+      </div>
+    </mat-card-content>
+    <mat-table
+      #table
+      [dataSource]="userList"
+      class="clstable mat-elevation-z10"
+      matSort
+    >
+      <ng-container matColumnDef="userID">
+        <mat-header-cell *matHeaderCellDef>User ID</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.userID }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.firstName }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef>Last Name</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.lastName }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.email }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="mobile">
+        <mat-header-cell *matHeaderCellDef>Mobile</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.mobile }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="gender">
+        <mat-header-cell *matHeaderCellDef>Gender</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.gender }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="isActive">
+        <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.isActive }}</mat-cell>
+      </ng-container>
+      <!-- <ng-container>
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="editUser(element.userId)"
+          >
+            Edit
+          </button>
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="deleteUser(element.userId)"
+          >
+            Delete
+          </button>
+        </mat-cell>
+      </ng-container> -->
+      <ng-container matColumnDef="update">
+        <mat-header-cell *matHeaderCellDef>Update</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            color="accent"
+            (click)="editUser(element.userID)"
+          >
+            <mat-icon class="mat-18">system_update</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="deleteUser(element.userID)"
+          >
+            <mat-icon class="mat-18">delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 4, 6, 10, 20]">
+    </mat-paginator>
+  </form>
+</mat-card>

@@ -1,0 +1,119 @@
+@import "./colors.scss";
+.group-button {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  max-width: 400px;
+  margin: auto;
+  padding: 30px;
+  button {
+    position: relative;
+    width: 100%;
+    display: block;
+    padding: 10px 20px;
+    color: $yoko;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-bottom: 30px;
+    letter-spacing: 4px;
+    background: none;
+    border: 2px solid $yoko;
+    cursor: pointer;
+    &:hover {
+      background: $yoko;
+      color: $white;
+      border-radius: 5px;
+      box-shadow: 0 0 5px $yoko, 0 0 25px $yoko, 0 0 50px $yoko, 0 0 100px $yoko;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+    i.fa-sign-out {
+      transform: rotateY(-180deg);
+    }
+  }
+}
+agm-map {
+  height: 300px;
+}
+
+agm-map {
+  height: 300px;
+}
+.info {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  max-width: 80%;
+  margin: auto;
+  padding: 30px;
+}
+h1 {
+  color: $white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 40px;
+    margin-right: 10px;
+  }
+}
+.button-clockin {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: $blue;
+  text-align: center;
+  line-height: 67px;
+  margin: 15px auto;
+  cursor: pointer;
+  button {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: $blue;
+    border: 4px solid $white;
+    color: $white;
+    cursor: pointer;
+  }
+}
+.vid {
+  width: 100%;
+  height: 100%;
+}
+.back {
+  position: relative;
+  display: block;
+  padding: 10px 20px;
+  color: $yoko;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.5s;
+  margin-bottom: 30px;
+  letter-spacing: 4px;
+  background: none;
+  border: 2px solid $yoko;
+  cursor: pointer;
+  &:hover {
+    background: $yoko;
+    color: $white;
+    border-radius: 5px;
+    box-shadow: 0 0 5px $yoko, 0 0 25px $yoko, 0 0 50px $yoko, 0 0 100px $yoko;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+  i.fa-sign-out {
+    transform: rotateY(-180deg);
+  }
+}

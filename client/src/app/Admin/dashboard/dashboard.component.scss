@@ -1,0 +1,28 @@
+@import "../../../assets/scss/common.scss";
+
+.clsDashboard {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  flex: 1;
+  .nav-container {
+    margin-bottom: 1em;
+    margin-top: 0.5em;
+  }
+}
+mat-expansion-panel-header {
+  .panelTitle {
+    widows: 200px;
+    font-weight: bold;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: $white;
+  }
+}
+.mat-expansion-indicator {
+  color: $white;
+}
+mat-expansion-panel {
+  background: linear-gradient($Randy, $Rollins);
+}
