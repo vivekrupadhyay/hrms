@@ -7,7 +7,7 @@ import { checkJwt } from "../middlewares/checkJwt";
 import { checkRole } from "../middlewares/checkRole";
 
 class UserController implements Controller {
-  public path = "/users";
+  public path = "/api/users";
   public router = express.Router();
   private users = userModel;
   constructor() {

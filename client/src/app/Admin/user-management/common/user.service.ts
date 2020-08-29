@@ -13,19 +13,20 @@ import { User } from './user.interface';
 
 @Injectable()
 export class UserService {
+  debugger;
   endpoint: string = environment.apiEndpoint + '/api/users';
   headers = new HttpHeaders({ 'Content-Type': 'application/json' });
   constructor(private httpClient: HttpClient) {}
 
   AddUser(users: User): Observable<User> {
-    const apiUrl = `${this.endpoint}/create`;
+    const apiUrl = `${this.endpoint}`;
 
     return this.httpClient
       .post<User>(apiUrl, users, { headers: this.headers })
       .pipe(catchError(this.handleError));
   }
   getUser(): Observable<User[]> {
-    const apiUrl = `${this.endpoint}/getall`;
+    const apiUrl = `${this.endpoint}`;
     return this.httpClient.get<User[]>(apiUrl);
   }
 
@@ -35,14 +36,14 @@ export class UserService {
   }
 
   updateUser(user: User, userId): Observable<User> {
-    const apiUrl = `${this.endpoint}/'update-user'/${userId}`;
+    const apiUrl = `${this.endpoint}/${userId}`;
     return this.httpClient
       .put<User>(apiUrl, user, { headers: this.headers })
       .pipe(catchError(this.handleError));
   }
 
   deleteUsers(userId): Observable<User> {
-    const apiUrl = `${this.endpoint}/'delete'/${userId}`;
+    const apiUrl = `${this.endpoint}/${userId}`;
     return this.httpClient
       .delete<User>(apiUrl)
       .pipe(catchError(this.handleError));
