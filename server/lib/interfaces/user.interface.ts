@@ -5,6 +5,8 @@ interface User {
   email: string;
   password: string;
   mobile: number;
+  companyCode: string;
+  country: string;
   role: string;
 }
 
