@@ -8,7 +8,7 @@ import DataStoredInToken from "../interfaces/dataStoredInToken.interface";
 import * as jwt from "jsonwebtoken";
 
 class AuthController implements Controller {
-  public path = "/auth";
+  public path = "/api/auth";
   public router = express.Router();
   private user = userModel;
   constructor() {

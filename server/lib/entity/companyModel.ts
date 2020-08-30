@@ -1,7 +1,6 @@
 import * as mongoose from "mongoose";
-const Schema = mongoose.Schema;
 
-const schema = new Schema(
+const companySchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -19,5 +18,8 @@ const schema = new Schema(
   },
   { timestamps: true }
 );
-
-module.exports = mongoose.model("Company", schema);
+const companyModel = mongoose.model<Company & mongoose.Document>(
+  "Company",
+  companySchema
+);
+export default companyModel;
