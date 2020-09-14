@@ -1,1 +1,7 @@
-<p>loading works!</p>
+<ng-container *ngIf="spinning">
+  <div class="spinner-overlay"></div>
+  <mat-spinner></mat-spinner>
+</ng-container>
+<ng-container *ngIf="(!spinning && !isLoading) || !hideContent"
+  ><ng-content></ng-content>
+</ng-container>
