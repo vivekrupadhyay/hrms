@@ -5,7 +5,7 @@ import { Schema } from "mongoose";
 const attendenceSchema = new mongoose.Schema({
   userId: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: "userModel",
   },
   currentAddress: {
     type: String,

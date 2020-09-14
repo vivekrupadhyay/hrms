@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
   },
   // companyCode: {
   //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: "Company",
+  //   ref: "companyModel",
   // },
   country: {
     type: String,
