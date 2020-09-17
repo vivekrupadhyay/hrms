@@ -67,7 +67,7 @@ class AuthController implements Controller {
           token: tokenData,
         });
       } else {
-        next(response.send("Exception occure."));
+        next(response.send("User does not exists."));
       }
     } else {
       next(response.send("Exception occure."));
