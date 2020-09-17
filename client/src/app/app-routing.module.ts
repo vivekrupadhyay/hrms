@@ -20,14 +20,13 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'home',
+    path: 'landing',
     loadChildren: () =>
       import('./Components/main-layout/main-layout.module').then(
         (m) => m.MainLayoutModule
       ),
   },
-  { path: '500', component: ServerErrorComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+
   {
     path: 'dashboard',
     loadChildren: () =>
@@ -75,6 +74,8 @@ const routes: Routes = [
     loadChildren: () =>
       import('./Admin/payroll/payroll.module').then((m) => m.PayrollModule),
   },
+  { path: '500', component: ServerErrorComponent },
+  { path: '', redirectTo: '/landing', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];
 
