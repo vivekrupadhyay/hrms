@@ -17,9 +17,6 @@ const userSchema = new mongoose.Schema({
   mobile: {
     type: Number,
   },
-  // companyCode: {
-  //   type: String,
-  // },
   companyCode: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "company",
@@ -31,11 +28,6 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "role",
   },
-  // role: {
-  //   type: String,
-  //   default: "user",
-  //   enum: ["user", "guest", "admin"],
-  // },
 });
 
 const userModel = mongoose.model<User & mongoose.Document>("User", userSchema);
