@@ -25,9 +25,14 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   role: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "role",
+    type: String,
+    default: "user",
+    enum: ["user", "guest", "admin"],
   },
+  // role: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "role",
+  // },
 });
 
 const userModel = mongoose.model<User & mongoose.Document>("User", userSchema);
