@@ -121,11 +121,11 @@
         </mat-card-actions>
       </div>
     </mat-card-content>
-    <app-loading [isLoading]="isLoading">
+    <!-- <app-loading [isLoading]="isLoading">
       <ng-container *ngIf="error">
         <strong>Something went wrong.</strong>
       </ng-container>
-    </app-loading>
+    </app-loading> -->
     <ng-container *ngIf="!isLoading">
       <mat-table
         #table

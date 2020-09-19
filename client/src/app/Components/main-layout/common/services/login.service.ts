@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from 'environments/environment';
+import { environment } from '../../../../../environments/environment';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map, take } from 'rxjs/operators';
 import { User } from '../user.interface';
@@ -33,18 +33,20 @@ export class LoginService {
       .post<User>(this.endpoint, login, { headers })
       .pipe(
         map((data) => {
-          if (data.role === 'user') {
-            localStorage.setItem('user', JSON.stringify({ data }));
-            this.currentUserSubject.next(data);
-            return data;
-          } else if (data.role === 'admin') {
-            localStorage.setItem('admin', JSON.stringify({ data }));
-            this.currentUserSubject.next(data);
-            return data;
-          } else {
-            localStorage.setItem('guest', JSON.stringify({ data }));
-            this.currentUserSubject.next(data);
-            return data;
+          if (data.token != null) {
+            if (data.role === 'user') {
+              localStorage.setItem('user', JSON.stringify({ data }));
+              this.currentUserSubject.next(data);
+              return data;
+            } else if (data.role === 'admin') {
+              localStorage.setItem('admin', JSON.stringify({ data }));
+              this.currentUserSubject.next(data);
+              return data;
+            } else {
+              localStorage.setItem('guest', JSON.stringify({ data }));
+              this.currentUserSubject.next(data);
+              return data;
+            }
           }
         }),
         catchError(this.handleError)

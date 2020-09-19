@@ -1,11 +1,11 @@
 import * as bcrypt from "bcrypt";
 import * as express from "express";
+import * as jwt from "jsonwebtoken";
 import Controller from "../interfaces/controller.interface";
 import userModel from "../entity/userModel";
 import User from "../interfaces/user.interface";
 import TokenData from "../interfaces/tokenData.interface";
 import DataStoredInToken from "../interfaces/dataStoredInToken.interface";
-import * as jwt from "jsonwebtoken";
 
 class AuthController implements Controller {
   public path = "/api/auth";
@@ -60,11 +60,13 @@ class AuthController implements Controller {
       if (isPasswordMatching) {
         user.password = undefined;
         const tokenData = this.createToken(user);
+        user.token = tokenData.token;
         response.setHeader("Set-Cookie", [this.createCookie(tokenData)]);
         response.send({
           code: 200,
           msg: "success",
           token: tokenData,
+          role: user.role,
         });
       } else {
         next(response.send("User does not exists."));
