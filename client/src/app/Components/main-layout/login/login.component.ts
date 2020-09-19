@@ -27,20 +27,18 @@ export class LoginComponent implements OnInit {
     this.loginForm = new FormGroup({
       email: new FormControl('', [
         Validators.required,
-        // Validators.maxLength(50),
-        // Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'),
+        Validators.maxLength(50),
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'),
       ]),
       password: new FormControl('', [Validators.required]),
     });
   }
   doLogin(): void {
-    debugger;
-    //this.loading = true;
+    this.loading = true;
     this.loginService
       .Login(this.loginForm.value)
       .pipe(take(1))
       .subscribe((data) => {
-        debugger;
         if (data.token == null && data.role == null) {
           this.loading = false;
           this.toaster.info('Unauthorise user !!');

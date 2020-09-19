@@ -28,13 +28,11 @@ export class LoginService {
     return this.currentUserSubject.value;
   }
   public Login = (login: User) => {
-    debugger;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http
       .post<User>(this.endpoint, login, { headers })
       .pipe(
         map((data) => {
-          debugger;
           if (data.token != null) {
             if (data.role === 'user') {
               localStorage.setItem('user', JSON.stringify({ data }));
