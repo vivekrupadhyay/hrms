@@ -1,11 +1,11 @@
 import * as bcrypt from "bcrypt";
 import * as express from "express";
+import * as jwt from "jsonwebtoken";
 import Controller from "../interfaces/controller.interface";
 import userModel from "../entity/userModel";
 import User from "../interfaces/user.interface";
 import TokenData from "../interfaces/tokenData.interface";
 import DataStoredInToken from "../interfaces/dataStoredInToken.interface";
-import * as jwt from "jsonwebtoken";
 
 class AuthController implements Controller {
   public path = "/api/auth";
