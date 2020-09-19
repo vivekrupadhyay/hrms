@@ -60,11 +60,13 @@ class AuthController implements Controller {
       if (isPasswordMatching) {
         user.password = undefined;
         const tokenData = this.createToken(user);
+        user.token = tokenData.token;
         response.setHeader("Set-Cookie", [this.createCookie(tokenData)]);
         response.send({
           code: 200,
           msg: "success",
           token: tokenData,
+          role: user.role,
         });
       } else {
         next(response.send("User does not exists."));

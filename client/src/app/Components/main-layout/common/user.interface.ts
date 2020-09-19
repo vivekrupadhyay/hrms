@@ -7,4 +7,5 @@ export interface User {
   companyCode: string;
   country: string;
   role: string;
+  token: string;
 }

@@ -1,0 +1,53 @@
+@import "../../../../assets/scss/colors.scss";
+.mat-form-field {
+  width: 100%;
+  min-width: 275px;
+}
+:host {
+  display: flex;
+  background-color: $hundson-navy;
+  height: 100%;
+  align-items: center;
+  flex-direction: column;
+}
+.mat-card-title {
+  display: flex;
+  padding-top: 20px;
+  justify-content: left;
+  width: 325px;
+}
+mat-card-content {
+  display: flex;
+  padding-top: 10px 25px;
+  justify-content: center;
+  width: 325px;
+}
+mat-card {
+  margin-bottom: 3em;
+}
+.mat-card-title {
+  margin-bottom: 0px;
+}
+.mat-flat-bottom {
+  margin: 0px !important;
+}
+h2 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.mat-card-title h2 {
+  font-size: 24px;
+  font-weight: 500;
+}
+.bottom-wrapper {
+  padding-top: 0.5em;
+}
+mat-raised-button {
+  display: flex;
+  justify-content: flex-end;
+}
+@media only screen and (max-height: 550px) {
+  :host {
+    justify-content: flex-start;
+  }
+}
