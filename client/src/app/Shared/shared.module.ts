@@ -21,7 +21,7 @@ import { RepositoryService } from './Common/services/repository.service';
     TosterComponent,
   ],
   imports: [CommonModule, MaterialModule, LoadingModule, FlexLayoutModule],
-  exports: [CommonModule, MaterialModule, FlexLayoutModule],
+  exports: [CommonModule, MaterialModule, LoadingModule, FlexLayoutModule],
   entryComponents: [SuccessDialogComponent, ErrorDialogComponent],
   providers: [ToasterService, RepositoryService],
 })
