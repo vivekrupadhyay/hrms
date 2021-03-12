@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
-import { ToasterService } from '../../../Shared/Common/services/toaster.service';
+//import { ToasterService } from '../../../Shared/Common/services/toaster.service';
 import { LoginService } from '../common/services/login.service';
 import { Login } from '../login/common/Login.interface';
 
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   public loginData: Login = { email: null, password: null };
   constructor(
     private loginService: LoginService,
-    private toaster: ToasterService,
+    //private toaster: ToasterService,
     private router: Router
   ) {}
 
@@ -41,20 +41,20 @@ export class LoginComponent implements OnInit {
       .subscribe((data) => {
         if (data.token == null && data.role == null) {
           this.loading = false;
-          this.toaster.info('Unauthorise user !!');
+          //this.toaster.info('Unauthorise user !!');
           this.router.navigate(['/login']);
         } else if (data.role === 'user') {
           this.loading = false;
           this.isLoggedIn = true;
           this.messageEvent.emit(this.isLoggedIn);
           this.router.navigate(['/dashboard']);
-          this.toaster.success('Success !!');
+          //this.toaster.success('Success !!');
         } else if (data.role === 'admin') {
           this.loading = false;
           this.router.navigate(['/dashboard']);
         } else {
           this.loading = false;
-          this.toaster.info('Unauthorise user !!');
+          // this.toaster.info('Unauthorise user !!');
         }
       });
   }

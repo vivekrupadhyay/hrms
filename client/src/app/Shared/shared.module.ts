@@ -11,6 +11,8 @@ import { ServerErrorComponent } from './error-pages/server-error/server-error.co
 import { TosterComponent } from './toster/toster.component';
 import { ToasterService } from './Common/services/toaster.service';
 import { RepositoryService } from './Common/services/repository.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './common/interceptor/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -21,8 +23,16 @@ import { RepositoryService } from './Common/services/repository.service';
     TosterComponent,
   ],
   imports: [CommonModule, MaterialModule, LoadingModule, FlexLayoutModule],
-  exports: [CommonModule, MaterialModule, FlexLayoutModule],
+  exports: [CommonModule, MaterialModule, LoadingModule, FlexLayoutModule],
   entryComponents: [SuccessDialogComponent, ErrorDialogComponent],
-  providers: [ToasterService, RepositoryService],
+  providers: [
+    ToasterService,
+    RepositoryService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
 })
 export class SharedModule {}

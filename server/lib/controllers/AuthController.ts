@@ -62,6 +62,7 @@ class AuthController implements Controller {
         const tokenData = this.createToken(user);
         user.token = tokenData.token;
         response.setHeader("Set-Cookie", [this.createCookie(tokenData)]);
+        
         response.send({
           code: 200,
           msg: "success",

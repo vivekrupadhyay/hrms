@@ -14,13 +14,13 @@ import { User } from '../user.interface';
   providedIn: 'root',
 })
 export class LoginService {
-  public token = '';
+  public token: string;
   public currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
   public endpoint: string = environment.apiEndpoint + '/api/auth/login';
   constructor(private http: HttpClient, private router: Router) {
     this.currentUserSubject = new BehaviorSubject<User>(
-      JSON.parse(localStorage.getItem('loggInUser'))
+      JSON.parse(localStorage.getItem('authToken')).data.token
     );
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -28,22 +28,27 @@ export class LoginService {
     return this.currentUserSubject.value;
   }
   public Login = (login: User) => {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      authorization: ` Bearer ${this.currentUserSubject.value.token}`,
+    });
+    //console.log(headers);
     return this.http
       .post<User>(this.endpoint, login, { headers })
       .pipe(
         map((data) => {
           if (data.token != null) {
             if (data.role === 'user') {
-              localStorage.setItem('user', JSON.stringify({ data }));
+              localStorage.setItem('authToken', JSON.stringify({ data }));
               this.currentUserSubject.next(data);
               return data;
             } else if (data.role === 'admin') {
-              localStorage.setItem('admin', JSON.stringify({ data }));
+              localStorage.setItem('authToken', JSON.stringify({ data }));
               this.currentUserSubject.next(data);
               return data;
             } else {
-              localStorage.setItem('guest', JSON.stringify({ data }));
+              // for gest user
+              localStorage.setItem('authToken', JSON.stringify({ data }));
               this.currentUserSubject.next(data);
               return data;
             }
@@ -51,6 +56,9 @@ export class LoginService {
         }),
         catchError(this.handleError)
       );
+  };
+  public logout = () => {
+    localStorage.clear();
   };
   private handleError = (error: HttpErrorResponse) => {
     let errorMessage = '';

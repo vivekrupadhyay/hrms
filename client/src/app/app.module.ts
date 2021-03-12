@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { AuthGuard } from "../app/Shared/gaurds/auth.gaurds";
 
 @NgModule({
   declarations: [AppComponent],
