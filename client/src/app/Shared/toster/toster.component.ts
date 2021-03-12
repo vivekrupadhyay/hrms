@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrNotification } from '../Common/toastrnotification';
+import { ToastrNotification } from '../../Shared/common/toasternotification';
 import { NotificationType } from '../Common/notification-type.enum';
 import { ToasterService } from '../Common/services/toaster.service';
 

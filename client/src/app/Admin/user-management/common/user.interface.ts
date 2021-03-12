@@ -12,4 +12,5 @@ export interface User {
   createdDate: Date;
   modifiedBy: number;
   modifiedDate: Date;
+  token: string;
 }

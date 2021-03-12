@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { ToastrNotification } from '../toastrnotification';
+import { ToastrNotification } from '../toasternotification';
 import { Router, NavigationStart } from '@angular/router';
 import { NotificationType } from '../notification-type.enum';
 
