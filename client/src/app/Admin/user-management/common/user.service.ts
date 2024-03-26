@@ -63,14 +63,14 @@ export class UserService {
     return this.httpClient.get<User>(apiUrl, { headers: this.headers });
   }
 
-  updateUser(user: User, userId): Observable<User> {
+  updateUser(user: User, userId:number): Observable<User> {
     const apiUrl = `${this.endpoint}/'update-user'/${userId}`;
     return this.httpClient
       .put<User>(apiUrl, user, { headers: this.headers })
       .pipe(catchError(this.handleError));
   }
 
-  deleteUsers(userId): Observable<User> {
+  deleteUsers(userId:number): Observable<User> {
     const apiUrl = `${this.endpoint}/'delete'/${userId}`;
     return this.httpClient
       .delete<User>(apiUrl, { headers: this.headers })
